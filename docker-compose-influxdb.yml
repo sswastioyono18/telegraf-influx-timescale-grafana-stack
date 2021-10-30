@@ -28,7 +28,7 @@ services:
     env_file: configuration.env
     user: "1000"
     ports:
-      - 0.0.0.0:3000:3000
+      - 3000:3000
     volumes:
       - ./grafana/data:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
