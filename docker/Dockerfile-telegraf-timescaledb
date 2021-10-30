@@ -1,5 +1,6 @@
 FROM telegraf:1.18
 
+USER root
 RUN wget https://telegrafreleases.blob.core.windows.net/linux/telegraf && \
 	mv telegraf /usr/bin/telegraf && \
 	chmod a+x /usr/bin/telegraf
