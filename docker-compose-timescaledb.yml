@@ -1,0 +1,60 @@
+version: '3.6'
+services:
+  telegraf-timescale:
+    container_name: telegraf-timescale
+    image: telegraf-timescaledb:latest
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: docker/Dockerfile-telegraf-timescaledb
+    environment:
+      - PGHOST=timescaledb
+      - PGDATABASE=postgres
+      - PGUSER=postgres
+      - PGPASSWORD=password
+    volumes:
+      - ./telegraf/etc/telegraf-timescale.conf:/etc/telegraf/telegraf.conf
+    ports:
+      - "8092:8092/udp"
+      - "8125:8125/udp"
+    networks:
+      - kb-backend
+
+  timescaledb:
+    container_name: timescaledb
+    image: timescale/timescaledb:latest-pg12
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - timescaledb:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - kb-backend
+
+  grafana:
+    image: grafana/grafana:7.5.7
+    env_file: configuration.env
+    ports:
+      - 192.168.18.77:3000:3000
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+      - ./grafana/dashboards/:/var/lib/grafana/dashboards/
+    networks:
+      - kb-backend
+
+volumes:
+  grafana_data: {}
+  timescaledb: {}
+
+
+networks:
+  kb-backend:
+    external: false
+    name: kb-backend

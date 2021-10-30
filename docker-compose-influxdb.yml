@@ -1,0 +1,42 @@
+version: '3.6'
+services:
+  telegraf:
+    image: telegraf:1.15-alpine
+    volumes:
+    - ./telegraf/etc/telegraf-influx.conf:/etc/telegraf/telegraf.conf
+    ports:
+    - 8125/udp
+    depends_on:
+      - influxdb
+    networks:
+      - kb-backend
+
+
+  influxdb:
+    image: influxdb:1.8-alpine
+    env_file: configuration.env
+    ports:
+      - 8086
+    volumes:
+      - ./influxdb_data/imports:/imports
+      - ./influxdb_data:/var/lib/influxdb
+    networks:
+      - kb-backend
+
+  grafana:
+    image: grafana/grafana:7.5.7
+    env_file: configuration.env
+    user: "1000"
+    ports:
+      - 0.0.0.0:3000:3000
+    volumes:
+      - ./grafana/data:/var/lib/grafana
+      - ./grafana/provisioning/:/etc/grafana/provisioning/
+      - ./grafana/dashboards/:/var/lib/grafana/dashboards/
+    networks:
+      - kb-backend
+
+networks:
+  kb-backend:
+    external: false
+    name: kb-backend
