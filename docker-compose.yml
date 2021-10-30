@@ -64,7 +64,7 @@ services:
     image: grafana/grafana:7.5.7
     env_file: configuration.env
     ports:
-      - "0.0.0.0:3000:3000"
+      - "3000:3000"
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana/provisioning/:/etc/grafana/provisioning/
