@@ -5,7 +5,7 @@ services:
     volumes:
       - ./telegraf/etc/telegraf-influx.conf:/etc/telegraf/telegraf.conf
     ports:
-      - 8125/udp
+      - 8126/udp
     depends_on:
       - timescaledb
     networks:
@@ -32,8 +32,8 @@ services:
     environment:
       - PGHOST=timescaledb
       - PGDATABASE=postgres
-      - PGUSER=postgres
-      - PGPASSWORD=password
+      - PGUSER=root
+      - PGPASSWORD=pass
     volumes:
       - ./telegraf/etc/telegraf-timescale.conf:/etc/telegraf/telegraf.conf
     ports:
