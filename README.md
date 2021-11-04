@@ -1,5 +1,3 @@
-[![Develop on Okteto](https://okteto.com/develop-okteto.svg)](https://cloud.okteto.com/deploy?repository=https://github.com/sswastioyono18/compose-telegraf&branch=master)
-
 # Grafana Telegraf Stack (TimescaleDB / InfluxDB)
 
 Mostly sourced from [here for influxdb](https://github.com/bcremer/docker-telegraf-influx-grafana-stack)
@@ -25,6 +23,10 @@ All (in case you need both or lazy just like me). This will execute docker-compo
 ```
 docker-compose up -d
 ```
+
+If you use okteto cloud, you can deploy it directly by just clicking this button
+[![Develop on Okteto](https://okteto.com/develop-okteto.svg)](https://cloud.okteto.com/deploy?repository=https://github.com/sswastioyono18/compose-telegraf&branch=master)
+
 
 ## Services and Ports
 
