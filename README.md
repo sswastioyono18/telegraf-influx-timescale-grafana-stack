@@ -44,8 +44,8 @@ docker-compose up -d
 
 ### TimescaleDB (PostgreSQL, same credentials when you want to add it into grafana)
 - Port: 5433 (so it doesn't conflict with existing postgres in docker/local)
-- User: postgres
-- Password: password
+- User: root
+- Password: pass
 - Database: postgres
 
 TimescaleDB will create the table based on the tag. Check telegraf-timescale.conf `table_template` parameter for more detail
