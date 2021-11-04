@@ -5,7 +5,7 @@ services:
     volumes:
     - ./telegraf/etc/telegraf-influx.conf:/etc/telegraf/telegraf.conf
     ports:
-    - 8125/udp
+    - 8126/udp
     depends_on:
       - influxdb
     networks:
