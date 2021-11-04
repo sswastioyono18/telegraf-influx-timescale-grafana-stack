@@ -27,6 +27,10 @@ docker-compose up -d
 If you use okteto cloud, you can deploy it directly by just clicking this button
 [![Develop on Okteto](https://okteto.com/develop-okteto.svg)](https://cloud.okteto.com/deploy?repository=https://github.com/sswastioyono18/compose-telegraf&branch=master)
 
+or clone then deploy via okteto cli
+```
+okteto stack deploy
+```
 
 ## Services and Ports
 
