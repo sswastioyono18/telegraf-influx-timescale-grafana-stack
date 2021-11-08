@@ -40,7 +40,7 @@ okteto stack deploy
 - Password: admin
 
 ### Telegraf
-- Port: 8125 UDP (StatsD input)
+- Port: 8125 (timescale) or 8126 (influx) UDP (StatsD input)
 
 ### InfluxDB
 - Port: 8086 (HTTP API)
