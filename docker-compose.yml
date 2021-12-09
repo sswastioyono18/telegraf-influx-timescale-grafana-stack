@@ -32,8 +32,8 @@ services:
     environment:
       - PGHOST=timescaledb
       - PGDATABASE=postgres
-      - PGUSER=root
-      - PGPASSWORD=pass
+      - PGUSER=postgres
+      - PGPASSWORD=password
     volumes:
       - ./telegraf/etc/telegraf-timescale.conf:/etc/telegraf/telegraf.conf
     ports:
